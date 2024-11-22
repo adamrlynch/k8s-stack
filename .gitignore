@@ -1,0 +1,17 @@
+**/.terraform/*
+
+*.tfstate
+*.tfstate.*
+
+tfplan
+
+.terraformrc
+terraform.rc
+
+.terragrunt-cache
+terragrunt
+terragrunt.iml
+
+setup.ps1
+
+/k3sup
