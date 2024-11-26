@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/controllers/production
+  path: ./gitops/infrastructure/controllers/production
   prune: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -27,27 +27,27 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/secrets/production
+  path: ./gitops/infrastructure/secrets/production
   prune: true
   postBuild:
     substitute:
       HCP_ORG_ID: b660d77c-217d-4e7c-85d7-3ca6b8667417
       HCP_PROJECT_ID: 82bd573b-5521-4fee-8e5d-78cfd9f5f6f1
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infra-configs
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infra-controllers
-    - name: infra-secrets
-  interval: 10m0s
-  retryInterval: 1m
-  timeout: 5m
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/configs/production
-  prune: true
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1
+# kind: Kustomization
+# metadata:
+#   name: infra-configs
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: infra-controllers
+#     - name: infra-secrets
+#   interval: 10m0s
+#   retryInterval: 1m
+#   timeout: 5m
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+#   path: ./infrastructure/configs/production
+#   prune: true
