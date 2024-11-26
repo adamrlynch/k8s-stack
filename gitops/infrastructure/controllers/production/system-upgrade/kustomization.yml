@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: system-upgrade
+resources:
+  - namespace.yml
+  - repository.yml
+  - release.yml
+  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.14.2/crd.yaml

@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-vip
+spec:
+  upgrade:
+    crds: CreateReplace
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-vip
+      version: "0.6.1"
+      sourceRef:
+        name: kube-vip
+        kind: HelmRepository
+  values:
+    config:
+      address: "10.3.0.1"
+    env:
+      vip_arp: "true"
+      lb_enable: "true"
+      lb_port: "6443"
+      vip_cidr: "32"
+      cp_enable: "true"
+      svc_enable: "false"
+      svc_election: "false"
+      vip_leaderelection: "true"
