@@ -49,5 +49,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./infrastructure/configs/production
+  path: ./gitops/infrastructure/configs/production
   prune: true
