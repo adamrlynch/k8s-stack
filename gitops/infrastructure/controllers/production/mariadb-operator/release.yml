@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      version: '0.36.x'
+      chart: mariadb-operator
+      sourceRef:
+        kind: HelmRepository
+        name: mariadb-operator
+      interval: 60m
+  upgrade:
+    crds: CreateReplace
+  values:
+    crds:
+      enabled: true
+    ha:
+      enabled: true
+    metrics:
+      enabled: true
+    pdb:
+      enabled: true
