@@ -15,10 +15,12 @@ spec:
     size: 10Gi
     storageClassName: csi-synology-synology-csi-iscsi-retain
 
+  username: wrsys
   passwordSecretKeyRef:
     name: mariadb-password
-    key: password
+    key: mariadb-password
     generate: false
+  database: wrsys
 
   replicas: 3
 
