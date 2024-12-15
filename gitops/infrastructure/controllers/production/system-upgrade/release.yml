@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: system-upgrade-controller
-      version: "104.x"
+      version: "105.x"
       sourceRef:
         kind: HelmRepository
         name: rancher
