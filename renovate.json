@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "flux": {
+    "fileMatch": [
+      "\\.ya?ml$"
+    ]
+  },
+  "kubernetes": {
+    "fileMatch": ["\\.ya?ml$"],
+    "ignorePaths": [
+      "gitops/clusters/**/flux-system/*"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchManagers": [
+        "flux",
+        "kubernetes"
+      ],
+      "matchPackagePatterns":[
+        ".*"
+      ]
+    },
+    {
+      "matchPackageNames": [
+        "HelmRelease"
+      ],
+      "matchDatasources": [
+        "kubernetes-api"
+      ],
+      "matchFileNames": [
+        "gitops/apps/production/**",
+        "gitops/clusters/production/**",
+        "gitops/infrastructure/configs/production/**",
+        "gitops/infrastructure/controllers/production/**",
+        "gitops/infrastructure/secrets/production/**"
+      ]
+    }
+  ]
+}
