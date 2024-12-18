@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meshcentral
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meshcentral
+  template:
+    metadata:
+      labels:
+        app: meshcentral
+    spec:
+      containers:
+      - name: meshcentral
+        image: ghcr.io/ylianst/meshcentral:latest
+        env:
+        - name: REVERSE_PROXY
+          value: "true"
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        - containerPort: 443
+          protocol: TCP
+        - containerPort: 4433
+          protocol: TCP
+        volumeMounts:
+        - name: meshcentral-config
+          mountPath: /opt/meshcentral/meshcentral-data/config.json
+          subPath: config.json
+        - name: meshcentral-data
+          mountPath: /opt/meshcentral/meshcentral-data
+        - name: meshcentral-user-files
+          mountPath: /opt/meshcentral/meshcentral-files
+        - name: meshcentral-backup
+          mountPath: /opt/meshcentral/meshcentral-backups
+        - name: meshcentral-web
+          mountPath: /opt/meshcentral/meshcentral-web
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      volumes:
+      - name: meshcentral-config
+        configMap:
+          name: meshcentral-config
+      - name: meshcentral-data
+        persistentVolumeClaim:
+          claimName: meshcentral-data-pvc
+      - name: meshcentral-user-files
+        persistentVolumeClaim:
+          claimName: meshcentral-user-files-pvc
+      - name: meshcentral-backup
+        persistentVolumeClaim:
+          claimName: meshcentral-backup-pvc
+      - name: meshcentral-web
+        persistentVolumeClaim:
+          claimName: meshcentral-web-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meshcentral
+spec:
+  selector:
+    app: meshcentral
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+    - name: "443"
+      port: 443
+      targetPort: 443
+    - name: "4433"
+      port: 4433
+      targetPort: 4433

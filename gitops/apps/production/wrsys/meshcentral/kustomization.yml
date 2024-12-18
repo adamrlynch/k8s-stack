@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: wrsys
+configMapGenerator:
+  - name: meshcentral-config
+    files:
+      - config.json
+resources:
+  - deployment.yml
+  - ingress.yml
+  - pvc.yml
+  - pv.yml
+configurations:
+  - kustomizeconfig.yml

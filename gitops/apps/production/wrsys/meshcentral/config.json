@@ -1,0 +1,34 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
+    "settings": {
+      "plugins":{"enabled": false},
+      "cert": "mesh.whiteriversystems.com",
+      "WANonly": true,
+      "port": 443,
+      "aliasPort": 443,
+      "redirPort": 80,
+      "redirAliasPort": 80,
+      "agentPong": 300,
+      "tlsOffload": false,
+      "selfUpdate": false,
+      "allowFraming": false,
+      "webRTC": false
+    },
+    "domains": {
+      "": {
+        "allowedOrigin": ["mesh.whiteriversystems.com"],
+        "title": "Meshcentral",
+        "title2": "Production",
+        "minify": true,
+        "newAccounts": true,
+        "localSessionRecording": false,
+        "userNameIsEmail": true
+      }
+    },
+    "letsEncrypt": {
+      "__comment__": "Requires NodeJS 8.x or better, Go to https://letsdebug.net/ first before>",
+      "email": "adam.lynch@whiteriversystems.com",
+      "names": "mesh.whiteriversystems.com",
+      "production": true
+    }
+  }

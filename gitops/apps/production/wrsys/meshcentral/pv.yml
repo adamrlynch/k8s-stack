@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meshcentral-data-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volume1/kubernetes/production/wrsys/meshcentral/data
+    server: '10.0.0.10'
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meshcentral-user-files-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volume1/kubernetes/production/wrsys/meshcentral/user-files
+    server: '10.0.0.10'
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meshcentral-backup-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volume1/kubernetes/production/wrsys/meshcentral/backup
+    server: '10.0.0.10'
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: meshcentral-web-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    path: /volume1/kubernetes/production/wrsys/meshcentral/web
+    server: '10.0.0.10'
