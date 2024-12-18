@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cnpg
+  namespace: cnpg
+spec:
+  interval: 12h
+  url: https://github.com/cloudnative-pg/postgres-containers
+  ref:
+    branch: main
+  ignore: |
+    Debian/*
+    !Debian/ClusterImageCatalog-bullseye.yaml
