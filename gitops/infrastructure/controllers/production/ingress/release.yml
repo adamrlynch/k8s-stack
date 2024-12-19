@@ -11,3 +11,8 @@ spec:
       sourceRef:
         name: ingress-nginx
         kind: HelmRepository
+  values:
+    controller:
+      config:
+        use-forwarded-headers: "true"
+        compute-full-forwarded-for: "true"
