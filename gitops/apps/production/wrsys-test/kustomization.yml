@@ -4,3 +4,4 @@ namespace: wrsys-test
 resources:
   - namespace.yml
   - meshcentral
+  #- odoo

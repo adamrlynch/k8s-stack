@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: meshcentral
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: meshcentral
@@ -69,12 +69,9 @@ spec:
   selector:
     app: meshcentral
   ports:
-    - name: "80"
+    - name: http
       port: 80
       targetPort: 80
-    - name: "443"
+    - name: https
       port: 443
       targetPort: 443
-    - name: "4433"
-      port: 4433
-      targetPort: 4433

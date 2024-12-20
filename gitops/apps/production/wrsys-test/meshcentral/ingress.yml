@@ -3,9 +3,7 @@ kind: Ingress
 metadata:
   name: meshcentral
   annotations:
-    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt-production
 spec:
   ingressClassName: nginx
   rules:
@@ -18,18 +16,8 @@ spec:
           service:
             name: meshcentral
             port:
-              number: 443
-  - host: mesh-test.whiteriversystems.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: meshcentral
-            port:
-              number: 4433
+              name: https
   tls:
   - hosts:
     - mesh-test.whiteriversystems.com
-    secretName: meshcentral-tls
+    secretName: mesh-test.whiteriversystems.com-tls
